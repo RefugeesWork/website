@@ -1,0 +1,653 @@
+@import url('https://fonts.googleapis.com/css?family=Maven+Pro:400,700|Raleway:400,700,200|Open+Sans:400,700,300|Roboto:400,500,700,100|Lato:400,300,700|Ubuntu:400,300,500,700);')
+
+
+// ------------------------------------------------------------------------------------
+// VARIABLES
+// ------------------------------------------------------------------------------------
+
+
+// FONTS
+$title_font = "Ubuntu"
+$read_font = "Roboto"
+
+// COLORS
+$color1 = #086375
+$color2 = #1DD3B0
+$color3 = #35012C
+$color4 = #AFFC41
+$color5 = #B2FF9E
+$color6 = #F23AAB
+$color7 = #828AFF
+
+// SIZES
+$nav-height = 30px
+
+// ------------------------------------------------------------------------------------
+// MIXINS
+// ------------------------------------------------------------------------------------
+media_queries = {
+ mobile : "only screen and (max-width: 600px)",
+ tablet : "only screen and (min-width: 601px) and (max-width: 800px)",
+ desktop : "only screen and (min-width: 801px) and (max-width: 1200px)"
+ wide  : "only screen and (min-width: 1201px)"
+}
+
+for_breakpoint(breakpoints)
+ conditions = ()
+ for breakpoint in breakpoints
+  push(conditions, media_queries[breakpoint])
+ conditions = join(", ", conditions)
+ @media conditions
+  {block}
+
+vendor(prop, args)
+ -webkit-{prop} args
+ -moz-{prop} args
+ -ms-{prop} args
+ -o-{prop} args
+ {prop} args
+
+border-radius()
+ vendor('border-radius', arguments)
+
+box-shadow()
+ vendor('box-shadow', arguments)
+
+transition()
+ vendor('transition', arguments)
+
+transform()
+ vendor('transform', arguments)
+
+transform-origin()
+ vendor('transform-origin', arguments)
+
+user-select()
+ vendor('user-select', arguments)
+
+background-linear-gradient(startPoint, startColor, startInterval, endColor, endInterval, deprecatedWebkitStartPoint = false, deprecatedWebkitEndPoint = false)
+ background-color startColor
+ if deprecatedWebkitStartPoint && deprecatedWebkitEndPoint
+  background-image -webkit-gradient(linear, deprecatedWebkitStartPoint, deprecatedWebkitEndPoint, color-stop(startInterval, startColor), color-stop(endInterval, endColor))
+ background-image -webkit-linear-gradient(startPoint, startColor startInterval, endColor endInterval)
+ background-image -moz-linear-gradient(startPoint, startColor startInterval, endColor endInterval)
+ background-image -ms-linear-gradient(startPoint, startColor startInterval, endColor endInterval)
+ background-image -o-linear-gradient(startPoint, startColor startInterval, endColor endInterval)
+ background-image linear-gradient(startPoint, startColor startInterval, endColor endInterval)
+ 
+// ------------------------------------------------------------------------------------
+// CSS
+// ------------------------------------------------------------------------------------
+
+html, body
+	background #fff
+	height 100%
+	width 100%
+	margin 0
+	padding 0
+	
+html, body, div, section
+	box-sizing border-box
+
+a
+	color #fff
+	text-decoration none
+
+p, ul, li, a
+	display inline-block
+	margin 0
+	padding 0
+
+p
+	line-height 2em
+	letter-spacing .01em
+
+body, div, p, input
+	font-weight normal 
+	font-family $read_font
+
+h1, h2, h3, h4, h5
+ 	font-weight 800 
+	font-family  $title_font
+	text-transform uppercase
+
+.container
+	position relative
+	max-width 1200px
+	margin 0 auto
+	padding 80px 50px
+	text-align center
+	clear both
+
+.container h1
+	font-size 46px
+	letter-spacing .01em
+	word-spacing .3em
+	text-transform uppercase
+	color #333
+	margin 0 0 60px 0
+	font-weight 600
+
+
+.left
+	float left 
+	
+.right
+	float right
+
+.split
+	margin 0 0 -10px 0
+	padding 0
+	width 100%
+	.left
+		width 50%
+		background #666
+		background url("../img/header/1.jpg")
+		background-size cover
+		background-position center
+		height 70vh
+
+	.right
+		width 50%
+		background #333
+		height 70vh
+		padding 15px 40px
+		color #fff
+		box-sizing border-box
+
+.center
+	text-align center
+
+.clearfix 
+  overflow hidden
+  
+.highlight-color
+	color $color2
+
+.bold
+	font-weight 800
+
+
+// --------------------------------------------------------------------------------------------------------
+// HEADER
+//---------------------------------------------------------------------------------------------------------
+
+header
+	position relative
+	top 0
+	display inline-block
+	background url('../img/header/bg.jpg') no-repeat
+	background-size cover
+	background-position center center
+	text-align center
+	width 100%
+	z-index 100
+	height 100vh
+	// border 12px solid #fff
+	box-sizing border-box
+
+	.darken
+		position absolute
+		width 100%
+		height 100%
+		background #000
+		opacity .7
+		
+	.header-content
+		position relative
+		width 100%
+		top calc(50% - 140px)
+		z-index 99
+		color #fff
+		h2
+			font-weight 400
+			font-size 2em
+
+.header-content h1
+	font-size 81px
+	font-family  $title_font
+	font-weight 700
+	padding 0
+	margin 0 0 20px 0
+
+
+
+
+
+/* ---------------------------------------------------------------------------------------------------------
+NAV
+--------------------------------------------------------------------------------------------------------- */
+
+nav
+	position fixed
+	width 100vw
+	top 0
+	text-align center
+	z-index 999
+	padding 15px 0
+	margin 0
+	transition background .4s cubic-bezier(0.7, 0, 0.4, 1), top .4s cubic-bezier(0.7, 0, 0.4, 1), opacity .4s cubic-bezier(0.7, 0, 0.4, 1)
+	
+	.grid-pad
+		padding-top 0
+
+	#nav-logo
+		float left
+		display relative
+		z-index 999
+		color #333
+		font-family $title_font
+		font-size 18px
+		line-height .7em
+		font-weight 400
+		letter-spacing .02em
+		padding 0px 15px
+		border 5px solid rgba(0,0,0,0)
+		img
+			max-width 20px
+			padding 0
+			margin 0
+
+	ul
+		float right
+		
+		li
+			position relative
+			margin 0 40px 0 0
+			font-family $title_font
+			font-size 10px
+			display inline-block
+			font-size .7em
+			letter-spacing .06em
+			h1
+				margin 0
+				font-weight 400
+				padding 0 10px 10px 10px
+
+
+.current-link
+	border-bottom 5px solid $color6
+
+
+/* ---------------------------------------------------------------------------------------------------------
+HEADROOM
+--------------------------------------------------------------------------------------------------------- */
+.headroom--pinned
+	background rgba(0,0,0,.7)
+	top 0
+
+.headroom--unpinned
+  top -50px
+
+.headroom--top
+	// opacity 0
+	background rgba(0,0,0,.1)
+
+
+
+
+
+
+// Button
+
+.button
+	position relative
+	font-family $read_font
+	font-size 1.3em
+	transition opacity .4s ease-out, left .4s ease-out, background .4s ease-out
+	z-index 100
+	color #fff
+	padding 8px 12px
+	width auto
+	display inline-block
+	margin 30px 20px 0 0
+	text-transform uppercase
+	border 4px solid #fff
+	i
+		padding-right 10px
+	&:hover
+		cursor pointer
+		background #fff
+		color #222
+
+
+
+.black
+	color #333
+	border-color #333
+	i
+		color #333
+	&:hover
+		background #333
+		color #eee
+		i
+			color #eee
+
+// --------------------------------------------------------------------------------------------------------
+// PROJECT LIST
+//---------------------------------------------------------------------------------------------------------
+
+section.project
+	position relative
+	width 100vw
+	overflow hidden
+	box-sizing border-radius
+	min-height 550px
+	// border 12px solid #fff
+	border-top 0
+	// border-bottom 12px solid #fff
+	a
+		display inline
+	&:hover
+		.project-content
+			background rgba(0,0,0,.9)
+			.project-description
+				opacity 1
+				left 0
+			.project-button
+				opacity 1
+				left 0
+			.project-title
+				background rgba(0,0,0,0)
+				padding-left 0
+				
+	.project-content
+		position absolute
+		z-index 10
+		padding 4%
+		height 100%
+		width 100%
+		display inline-block
+		transition background .4s ease-out
+		background rgba(0,0,0,.3)
+		
+		.project-button
+			position relative
+			left -50px
+			font-family $read_font
+			font-size 1.3em
+			opacity 0
+			transition opacity .4s ease-out, left .4s ease-out, background .4s ease-out
+			z-index 100
+			color #fff
+			padding 12px
+			width auto
+			display inline-block
+			margin 30px 20px 0 0
+			text-transform uppercase
+			border 4px solid #fff
+			i
+				padding-right 10px
+			
+			&:hover
+				cursor pointer
+				background #fff
+				color #222
+				
+		.project-title
+			line-height 1em
+			display inline-block
+			padding 10px 20px
+			background rgba(0,0,0,.8)
+			font-family $read_font
+			text-transform uppercase
+			transition background .4s ease-out, padding .4s ease-out
+			color #ddd
+			margin 0 0 40px 0
+			font-size 3em
+			font-weight 800
+			
+			+for_breakpoint(mobile tablet)
+				font-size 2em
+				
+		.project-description
+			position relative
+			left -50px
+			opacity 0
+			transition opacity .4s ease-out, left .4s ease-out
+			max-width 40%
+			padding 0
+			margin 0
+			font-family $read_font
+			font-weight 400
+			letter-spacing .02em
+			line-height 1.8em
+			color #fff
+			
+			+for_breakpoint(mobile tablet)
+				max-width 100%
+				
+	.project-image
+		position absolute
+		z-index 1
+		height 100%
+		width 100%
+		background-size cover !important
+		background-position center !important
+
+
+
+
+// --------------------------------------------------------------------------------------------------------
+// ARTICLE
+//---------------------------------------------------------------------------------------------------------
+section.article-header
+	position relative
+	width 100vw
+	overflow hidden
+	box-sizing border-radius
+	min-height 70vh
+	background-position center !important
+
+section.article-content
+	padding 40px 0
+	position relative
+	min-height 30vh
+	.content
+		padding-right 40px
+
+.wip
+	color #f33
+	font-weight 300
+
+.content
+	h1
+		font-family $read_font
+		text-transform uppercase
+		font-weight 800
+		display inline-block
+		text-align center
+		width 100%
+	i
+		display inline-block
+		position relative
+
+.intro
+	padding 70px 0 105px 0
+	position relative
+	.icon
+		position relative
+		display block
+		text-align center
+
+		object
+			display inline
+			max-width 200px
+			
+	.calc
+		font-size 2em
+		padding-top 6%
+		+for_breakpoint(mobile tablet)
+			opacity 0
+			margin 20px 0
+	p 
+		padding 0 20px
+		margin-top 10px
+		font-size .95em
+		line-height 1.9em
+	a
+		text-align center
+		width 100%	
+
+
+
+/* ---------------------------------------------------------------------------------------------------------
+SECTIONS
+--------------------------------------------------------------------------------------------------------- */
+
+input
+	display inline
+ 	width 187px
+ 	border none
+ 	padding 10px
+ 	margin 0 4px
+
+
+textarea
+	margin 10px 0 0 0
+	height 160px
+	font-family $read_font
+	border none
+	resize none
+	padding 20px
+	width 385px
+
+.submit
+	margin 10px 0 0 0
+	width 425px
+
+.submit hover
+	background #ccc
+
+#footer
+	background #333
+	height 40px
+
+#footer .container
+	padding 8px 50px
+	text-align left
+	font-size 12px
+	color #ddd
+
+#footer p
+	padding 0 10px
+	
+
+
+
+
+/* ---------------------------------------------------------------------------------------------------------
+ARROW DOWN
+--------------------------------------------------------------------------------------------------------- */
+
+@keyframes scrolldown3 
+  0% 
+    bottom 50px
+    opacity 1 
+
+  70% 
+    bottom 100px
+    opacity 0.2 
+
+  100% 
+    bottom 50px
+    opacity 1  
+
+.scrolldown3 
+  -webkit-animation scrolldown3 2s infinite
+  animation scrolldown3 2s infinite
+  max-width 64px
+  max-height 36px
+  position absolute
+  left calc(50% - 32px)
+
+.scrolldown3 path 
+  stroke #fff
+  fill transparent
+  stroke-width 3px 
+
+
+#contact
+	padding 50px 0 0 0
+	height 200px
+	text-align center
+	background #333
+	p
+		color #fff
+
+
+
+/* ---------------------------------------------------------------------------------------------------------
+TICKER
+--------------------------------------------------------------------------------------------------------- */
+
+.ticker-wrapper 
+	line-height  40px
+	color  #ccc
+	overflow hidden
+
+.visible 
+	font-size 2em
+	font-family $read_font
+	font-weight 800
+	overflow hidden
+	height 50px
+
+.visible p 
+	display inline
+	float left
+	margin 0
+
+.ticker 
+	margin-top 7px
+	padding-left 13px
+	text-align left
+	list-style none
+	animation 18s linear 0s normal none infinite change
+
+.ticker li 
+	display block
+	color #fff
+	line-height 50px
+	margin 0
+
+@keyframes change 
+  0%, 12%, 100% 
+  	transform translateY(0)
+  17%, 29% 
+  	transform translateY(-25%)
+  34%, 46% 
+  	transform translateY(-50%)
+  51%, 63% 
+  	transform translateY(-75%)
+  68%, 80% 
+  	transform translateY(-50%)
+  85%, 97% 
+  	transform translateY(-25%)
+
+
+
+
+
+// CLEARFIX
+
+
+.clearfix:after 
+	visibility hidden
+	display block
+	font-size 0
+	content " "
+	clear both
+	height 0
+
+.clearfix
+	display inline-block
+
+
+
+
+// sponsors
+
+.sponsors
+	height 80vh
+	background #fff

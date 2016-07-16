@@ -1,0 +1,43 @@
+<!doctype html><html><head><title>Thanh Nguyen - Graphic designer & front-end developer</title><meta charset="utf-8"><link href="http://fonts.googleapis.com/css?family=Raleway:400,200,800" rel="stylesheet" type="text/css"><!-- <link rel="shortcut icon" href="img/website/favicon.ico" /> --><link rel="stylesheet" type="text/css" href="css/style.min.css" media="screen"><link rel="stylesheet" type="text/css" href="css/simplegrid.css" media="screen"><link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/animsition/4.0.2/css/animsition.min.css" media="screen"></head><body><div class="animsition"><nav><div class="grid grid-pad"><div id="nav-logo"><a class="animsition-link" href="/">THANH</a></div><ul><li><a class="animsition-link" href="refugeeswork.html" id="projectsLink"><h1>Work</h1></a></li><li><a class="animsition-link" href="refugeeswork.html" id="aboutLink"><h1>About</h1></a></li><li><a class="animsition-link" href="refugeeswork.html" id="contactLink"><h1>Contact</h1></a></li></ul></div></nav><section class="article-header" style="background:url('/img/projects/rw.jpg')"></section><section class="article-content"><div class="grid grid-pad"><div class="col-1-2 mobile-col-1-1"><div class="content"><i class="fa fa-chevron-right" aria-hidden="true"></i><h1>RefugeesWork</h1><p>Bringing together the two disciplines design and front-end development to create a whole user experience.</p></div></div><div class="col-1-2 mobile-col-1-1"><div class="content"><i class="fa fa-chevron-right" aria-hidden="true"></i><h1>Problem solving</h1><p>Bringing together the two disciplines design and front-end development to create a whole user experience.</p></div></div></div></section><div class="section" id="footer"><div class="container"><p class="left">© 2016 Thanh Duc Nguyen</p><a href="" class="right"><p>Legal notice</p></a><a href="" class="right"><p>Disclaimer</p></a></div></div></div><!-- animsition end --><script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script><script src="https://use.fontawesome.com/503e9375ae.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/animsition/4.0.2/js/animsition.min.js"></script><script>$(document).ready(function() {
+      $(".animsition").animsition({
+        inClass: 'fade-in',
+        outClass: 'fade-out',
+        inDuration: 1500,
+        outDuration: 800,
+        linkElement: '.animsition-link',
+        // e.g. linkElement: 'a:not([target="_blank"]):not([href^="#"])'
+        loading: true,
+        loadingParentElement: 'body', //animsition wrapper element
+        loadingClass: 'animsition-loading',
+        loadingInner: '', // e.g '<img src="loading.svg" />'
+        timeout: false,
+        timeoutCountdown: 5000,
+        onLoadEvent: true,
+        browser: [ 'animation-duration', '-webkit-animation-duration'],
+        // "browser" option allows you to disable the "animsition" in case the css property in the array is not supported by your browser.
+        // The default setting is to disable the "animsition" in a browser that does not support "animation-duration".
+        overlay : false,
+        overlayClass : 'animsition-overlay-slide',
+        overlayParentElement : 'body',
+        transition: function(url){ window.location.href = url; }
+      });
+    });
+
+    $(function() {
+    // Parse int to turn "120px" into 120 integer.
+    // -3 to make it scroll past the sticky navigation
+      var navHeight = parseInt($('nav').css('height'), 10) - 3;
+        $('a[href*=#]:not([href=#])').click(function() {
+          if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') && location.hostname == this.hostname) {
+            var target = $(this.hash);
+            target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
+            if (target.length) {
+              $('html,body').animate({
+              // Including the height of the fixed nav
+                scrollTop: (target.offset().top - navHeight)
+              }, 500);
+              return false;
+            }
+          }
+        });
+    });</script></body></html>
