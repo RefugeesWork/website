@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Maven+Pro:400,700|Raleway:400,700,200|Open+Sans:400,700,300|Roboto:400,500,700,100|Lato:400,300,700|Ubuntu:400,300,500,700);')
+@import url('https://fonts.googleapis.com/css?family=Lato:400,300,700|Ubuntu:400,300,500,700);')
 
 
 // ------------------------------------------------------------------------------------
@@ -205,7 +205,7 @@ header
 		width 100%
 		height 100%
 		background #000
-		opacity .7
+		opacity .8
 		
 	.header-content
 		position relative
@@ -241,7 +241,8 @@ nav
 	z-index 999
 	padding 15px 0 5px 0
 	margin 0
-	transition background .4s cubic-bezier(0.7, 0, 0.4, 1), top .4s cubic-bezier(0.7, 0, 0.4, 1), opacity .4s cubic-bezier(0.7, 0, 0.4, 1)
+	box-sizing border-box
+	transition padding .7s cubic-bezier(0.7, 0, 0.4, 1), background .4s cubic-bezier(0.7, 0, 0.4, 1), top .4s cubic-bezier(0.7, 0, 0.4, 1), opacity .4s cubic-bezier(0.7, 0, 0.4, 1)
 	
 	.grid-pad
 		padding-top 0
@@ -252,12 +253,11 @@ nav
 		z-index 999
 		color #333
 		font-family $title_font
-		font-size 18px
+		font-size 1.6em
 		line-height .7em
-		font-weight 400
-		letter-spacing .02em
-		padding 0
-		//border 5px solid rgba(0,0,0,0)
+		font-weight 300
+		padding 0 0 0 15px
+		transition font-size .7s cubic-bezier(0.7, 0, 0.4, 1), margin .7s cubic-bezier(0.7, 0, 0.4, 1)
 		img
 			max-width 20px
 			padding 0
@@ -265,21 +265,20 @@ nav
 
 	ul
 		float right
-		
+		padding-right 10px
 		li
-			position relative
-			margin 0 20px 0 0
-			font-family $title_font
-			font-size 10px
 			display inline-block
-			font-size .7em
-			text-transform lowercase
-			letter-spacing .04em
+			position relative
+			margin 0 0 0 20px
+
 			h1
 				margin 0
-				font-weight 400
+				font-family $title_font
+				font-size 1em
+				font-weight 500
+				letter-spacing .04em
 				padding 0 10px 10px 10px
-				
+				text-transform uppercase
 
 
 
@@ -291,16 +290,20 @@ nav
 HEADROOM
 --------------------------------------------------------------------------------------------------------- */
 .headroom--pinned
-	background rgba(0,0,0,.7)
-	top 0
+	background $color3
+	// top 0
 
 .headroom--unpinned
-  top -50px
+	background $color3
+	// top -50px
 
 .headroom--top
-	// opacity 0
-	background rgba(0,0,0,.1)
-
+	padding 50px
+	background rgba(0,0,0,0)
+	// top 0
+	#nav-logo
+		font-size 2.4em
+		margin -10px 0 0 0
 
 
 
@@ -683,9 +686,14 @@ TICKER
 // sponsors
 
 .sponsors
-	height 80vh
+	margin 40px 0 20px 0
 	background #fff
 	h1
 		text-align center
-		margin 40px 0 0px 0
 		font-size 2em
+		margin 0
+	img
+		width 75%
+		margin-bottom 40px
+	div
+		text-align center
